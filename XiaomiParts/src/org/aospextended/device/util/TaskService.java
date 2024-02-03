@@ -25,6 +25,7 @@ import android.util.Slog;
 
 import com.android.systemui.shared.system.ActivityManagerWrapper;
 import com.android.systemui.shared.system.TaskStackChangeListener;
+import com.android.systemui.shared.system.TaskStackChangeListeners;
 
 import androidx.preference.PreferenceManager;
 
@@ -88,8 +89,7 @@ public class TaskService extends Service {
     public void onCreate() {
         mPm = getPackageManager();
 
-        ActivityManagerWrapper.getInstance().registerTaskStackListener(mTaskListener);
-
+        TaskStackChangeListeners.getInstance().registerTaskStackListener(mTaskListener);
         mTaskListener.onTaskStackChanged();
     }
 
